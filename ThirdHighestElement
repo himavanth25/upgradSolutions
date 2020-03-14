@@ -1,0 +1,43 @@
+package com.pkg;
+
+import java.util.*;
+
+public class Source {
+    public static void main(String args[]) {
+        Scanner s = new Scanner(System.in);
+        int n = s.nextInt();
+        int[] arr = new int[n];
+        for (int i = 0; i < n; i++)
+            arr[i] = s.nextInt();
+        thirdMaxInteger(arr);
+    }
+
+    // Method to find the third maximum integer in the array
+    static void thirdMaxInteger(int[] arr) {
+        // Write your code here
+ 
+        int fValue = arr[0], sValue = arr[0], tValue = arr[0];
+        if (arr.length < 3)
+            System.out.println("The array doesn't have a third maximum element");
+        else {
+            for (int i = 0; i < arr.length; i++) {
+                if (arr[i] > fValue) {
+                    tValue = sValue;
+                    sValue = fValue;
+                    fValue = arr[i];
+                } else if (arr[i] < fValue && arr[i] > sValue) {
+                    tValue = sValue;
+                    sValue = arr[i];
+                } else if (arr[i] < sValue && arr[i] > tValue) {
+                    tValue = arr[i];
+                }
+            }
+            if (tValue != sValue)
+                System.out.println(tValue);
+            else
+                System.out.println("The array doesn't have a third maximum element");
+
+        }
+
+    }
+}
